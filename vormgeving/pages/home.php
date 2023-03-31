@@ -28,6 +28,6 @@
         <div class="detailButton"><i class="fas fa-search"></i> bekijk</div>
     </a>
 </div>
-<footer>&copy; [jenaam] 2023</footer>
+<footer>&copy; OldMartijntje 2023</footer>
 </body>
 </html>

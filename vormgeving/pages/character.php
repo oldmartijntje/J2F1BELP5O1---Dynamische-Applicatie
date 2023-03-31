@@ -42,6 +42,6 @@
         <div style="clear: both"></div>
     </div>
 </div>
-<footer>&copy; [jenaam] 2023</footer>
+<footer>&copy; OldMartijntje 2023</footer>
 </body>
 </html>
