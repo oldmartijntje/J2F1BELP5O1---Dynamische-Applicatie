@@ -56,17 +56,17 @@ $mysqli->close();
     <?php 
     for ($i=0; $i < count($allCharacters); $i++) { 
     ?>
-    <a class="item" href="?page=character&id=<?php echo stripslashes(trim(HTMLspecialchars($allCharacters[$i]['id']))) ?>">
+    <a class="item" href="?page=character&id=<?php echo $allCharacters[$i]['id'] ?>">
         <div class="left">
-            <img class="avatar" src="resources/images/<?php echo stripslashes(trim(HTMLspecialchars($allCharacters[$i]['avatar']))) ?>">
+            <img class="avatar" src="resources/images/<?php echo $allCharacters[$i]['avatar'] ?>">
         </div>
         <div class="right">
-            <h2><?php echo stripslashes(trim(HTMLspecialchars($allCharacters[$i]['name']))) ?></h2>
+            <h2><?php echo $allCharacters[$i]['name'] ?></h2>
             <div class="stats">
                 <ul class="fa-ul">
-                    <li><span class="fa-li"><i class="fas fa-heart"></i></span> <?php echo stripslashes(trim(HTMLspecialchars($allCharacters[$i]['health']))) ?></li>
-                    <li><span class="fa-li"><i class="fas fa-fist-raised"></i></span> <?php echo stripslashes(trim(HTMLspecialchars($allCharacters[$i]['attack']))) ?></li>
-                    <li><span class="fa-li"><i class="fas fa-shield-alt"></i></span> <?php echo stripslashes(trim(HTMLspecialchars($allCharacters[$i]['defense']))) ?></li>
+                    <li><span class="fa-li"><i class="fas fa-heart"></i></span> <?php echo $allCharacters[$i]['health'] ?></li>
+                    <li><span class="fa-li"><i class="fas fa-fist-raised"></i></span> <?php echo $allCharacters[$i]['attack'] ?></li>
+                    <li><span class="fa-li"><i class="fas fa-shield-alt"></i></span> <?php echo $allCharacters[$i]['defense'] ?></li>
                 </ul>
             </div>
         </div>

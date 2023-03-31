@@ -10,6 +10,7 @@
     <?php $redirectDict = array(
         'home' => 'pages/home.php',
         "character" => "pages/character.php",
+        "404character" => "pages/404character.php",
     );
     ?>
 

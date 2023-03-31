@@ -7,36 +7,73 @@
     <link href="resources/css/style.css" rel="stylesheet"/>
 </head>
 <body>
-<header><h1>Bowser</h1>
-    <a class="backbutton" href="index.html"><i class="fas fa-long-arrow-alt-left"></i> Terug</a></header>
+
+<?php
+require_once "resources/config.php";
+
+$sql = "SELECT * FROM characters WHERE id = " . $_GET['id'] . "";
+    if($result = $mysqli->query($sql)){
+        if($result->num_rows > 0){
+            while($row = $result->fetch_array()){
+            
+                $newDict = [];
+                foreach($row as $key=>$value) {
+                    $newDict[$key] = stripslashes(trim(HTMLspecialchars($value)));
+                    $newDict[$key] = str_replace('\'', '', $newDict[$key]);
+                } 
+                // Loop through each property in the object
+                foreach ($newDict as $key => $value) {
+                    // If the property value is a string containing unescaped "\r" characters
+                    if (is_string($value) && strpos($value, "\r") !== false) {
+                        // Replace unescaped "\r" characters with escaped "\r" characters
+                        $newDict[$key] = str_replace("\r\n", " ", $value);
+                    }
+                }
+                
+    }
+        $result->free();
+    } else{
+        echo '<div class="alert alert-danger"><em>No records were found.</em></div>';
+        ?>
+        <script>
+            window.location.href = "?page=404character";
+        </script>
+        <?php
+    }
+} else{
+    echo "Oops! Something went wrong. Please try again later.";
+}
+
+// Close connection
+$mysqli->close();
+
+?>
+<script>
+    var obj = JSON.parse('<?php echo json_encode($newDict) ?>');
+    console.log(obj)
+</script>
+
+<header><h1><?php echo $newDict['name'] ?></h1>
+    <a class="backbutton" href="?page=home"><i class="fas fa-long-arrow-alt-left"></i> Terug</a></header>
 <div id="container">
     <div class="detail">
         <div class="left">
-            <img class="avatar" src="resources/images/bowser.jpg">
+            <img class="avatar" src="resources/images/<?php echo $newDict['avatar'] ?>">
             <div class="stats" style="background-color: yellowgreen">
                 <ul class="fa-ul">
-                    <li><span class="fa-li"><i class="fas fa-heart"></i></span> 10000</li>
-                    <li><span class="fa-li"><i class="fas fa-fist-raised"></i></span> 400</li>
-                    <li><span class="fa-li"><i class="fas fa-shield-alt"></i></span> 100</li>
+                    <li><span class="fa-li"><i class="fas fa-heart"></i></span> <?php echo $newDict['health'] ?></li>
+                    <li><span class="fa-li"><i class="fas fa-fist-raised"></i></span> <?php echo $newDict['attack'] ?></li>
+                    <li><span class="fa-li"><i class="fas fa-shield-alt"></i></span> <?php echo $newDict['defense'] ?></li>
                 </ul>
                 <ul class="gear">
-                    <li><b>Weapon</b>: Fire Breath</li>
-                    <li><b>Armor</b>: Giant Shell</li>
+                    <li><b>Weapon</b>: <?php echo $newDict['weapon'] ?></li>
+                    <li><b>Armor</b>: <?php echo $newDict['armor'] ?></li>
                 </ul>
             </div>
         </div>
         <div class="right">
             <p>
-                Bowser or King Koopa, is a fictional character and the main antagonist of Nintendo's Mario franchise. In
-                Japan, the character bears the title of Great Demon King. In the U.S., the character was first referred
-                to as "Bowser, King of the Koopas" and "the sorcerer king" in the instruction manual.<br/>
-                <br/>
-                Bowser is the leader of the turtle-like Koopa race, and has been the archenemy of Mario since his first
-                appearance, in the 1985 video game Super Mario Bros.<br/>
-                <br/>
-                His ultimate goals are to kidnap Princess Peach, defeat Mario, and conquer the Mushroom Kingdom. Since
-                his debut, he has appeared in almost every Mario franchise game, usually serving as the main antagonist.
-                Bowser is voiced by Kenny James.
+            <?php echo $newDict['bio'] ?>
             </p>
         </div>
         <div style="clear: both"></div>
