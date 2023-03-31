@@ -15,8 +15,7 @@ $sql = "SELECT * FROM characters";
     if($result = $mysqli->query($sql)){
         if($result->num_rows > 0){
             while($row = $result->fetch_array()){
-            ?><script>
-                <?php
+            
                 $newDict = [];
                 foreach($row as $key=>$value) {
                     $newDict[$key] = stripslashes(trim(HTMLspecialchars($value)));
@@ -30,11 +29,8 @@ $sql = "SELECT * FROM characters";
                         $newDict[$key] = str_replace("\r\n", " ", $value);
                     }
                 }
-                array_push($allCharacters, $newDict)
-                ?>
-            var obj = JSON.parse('<?php echo json_encode($newDict) ?>');
-        </script>
-<?php
+                array_push($allCharacters, $newDict);
+                
     }
         $result->free();
     } else{
@@ -57,22 +53,26 @@ $mysqli->close();
 
 </header>
 <div id="container">
-    <a class="item" href="?page=character">
+    <?php 
+    for ($i=0; $i < count($allCharacters); $i++) { 
+    ?>
+    <a class="item" href="?page=character&id=<?php echo stripslashes(trim(HTMLspecialchars($allCharacters[$i]['id']))) ?>">
         <div class="left">
-            <img class="avatar" src="resources/images/bowser.jpg">
+            <img class="avatar" src="resources/images/<?php echo stripslashes(trim(HTMLspecialchars($allCharacters[$i]['avatar']))) ?>">
         </div>
         <div class="right">
-            <h2>Bowser</h2>
+            <h2><?php echo stripslashes(trim(HTMLspecialchars($allCharacters[$i]['name']))) ?></h2>
             <div class="stats">
                 <ul class="fa-ul">
-                    <li><span class="fa-li"><i class="fas fa-heart"></i></span> 10000</li>
-                    <li><span class="fa-li"><i class="fas fa-fist-raised"></i></span> 400</li>
-                    <li><span class="fa-li"><i class="fas fa-shield-alt"></i></span> 100</li>
+                    <li><span class="fa-li"><i class="fas fa-heart"></i></span> <?php echo stripslashes(trim(HTMLspecialchars($allCharacters[$i]['health']))) ?></li>
+                    <li><span class="fa-li"><i class="fas fa-fist-raised"></i></span> <?php echo stripslashes(trim(HTMLspecialchars($allCharacters[$i]['attack']))) ?></li>
+                    <li><span class="fa-li"><i class="fas fa-shield-alt"></i></span> <?php echo stripslashes(trim(HTMLspecialchars($allCharacters[$i]['defense']))) ?></li>
                 </ul>
             </div>
         </div>
         <div class="detailButton"><i class="fas fa-search"></i> bekijk</div>
     </a>
+    <?php } ?>
 </div>
 <footer>&copy; OldMartijntje 2023</footer>
 </body>
