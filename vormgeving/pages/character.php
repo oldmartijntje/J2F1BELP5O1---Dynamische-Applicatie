@@ -42,6 +42,11 @@ $sql = "SELECT * FROM characters WHERE id = " . $_GET['id'] . "";
     }
 } else{
     echo "Oops! Something went wrong. Please try again later.";
+    ?>
+        <script>
+            window.location.href = "?page=404character";
+        </script>
+    <?php
 }
 
 // Close connection
