@@ -12,6 +12,8 @@
 require_once "resources/config.php";
 
 $sql = "SELECT * FROM characters WHERE id = " . $_GET['id'] . "";
+// $sql = "SELECT * FROM characters WHERE id = " . "1; DROP DATABASE;". "";
+
     if($result = $mysqli->query($sql)){
         if($result->num_rows > 0){
             while($row = $result->fetch_array()){
@@ -63,8 +65,8 @@ $mysqli->close();
 <div id="container">
     <div class="detail">
         <div class="left">
-            <img class="avatar" src="resources/images/<?php echo $newDict['avatar'] ?>">
-            <div class="stats" style="background-color: yellowgreen">
+            <img class="avatar <?php if ($newDict['name'] == "Captain America") { echo 'rotated'; } ?>" src="resources/images/<?php echo $newDict['avatar'] ?>">
+            <div class="stats" style="background-color: <?php echo $newDict['color'] ?>">
                 <ul class="fa-ul">
                     <li><span class="fa-li"><i class="fas fa-heart"></i></span> <?php echo $newDict['health'] ?></li>
                     <li><span class="fa-li"><i class="fas fa-fist-raised"></i></span> <?php echo $newDict['attack'] ?></li>

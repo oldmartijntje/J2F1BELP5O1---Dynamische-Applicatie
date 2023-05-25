@@ -1,22 +1,25 @@
-html, body{
+html,
+body {
     background-color: gray;
     font-family: Verdana;
 }
 
-a{
+a {
     color: black;
     text-decoration: none;
 }
 
-a:hover{
-    color:limegreen;
+a:hover {
+    color: limegreen;
 }
 
 a:active {
     color: red;
 }
 
-#container, footer, header {
+#container,
+footer,
+header {
     width: 960px;
     margin: 0 auto;
     background-color: white;
@@ -34,7 +37,7 @@ h1 {
     margin: 0;
 }
 
-.item{
+.item {
     border-bottom: 1px solid silver;
     padding: 5px;
     margin: 10px;
@@ -42,11 +45,11 @@ h1 {
     width: 450px;
 }
 
-.item:hover{
+.item:hover {
     background-color: gainsboro;
 }
 
-.item .left{
+.item .left {
     display: inline-block;
     margin-right: 20px;
 }
@@ -57,7 +60,7 @@ h1 {
     height: 150px;
 }
 
-.item .right{
+.item .right {
     display: inline-block;
 }
 
@@ -66,37 +69,40 @@ h1 {
     margin: 0;
 }
 
-.item:hover .right ul{
+.item:hover .right ul {
     color: black;
 }
 
 .detail {
     position: relative;
 }
+
 header .backbutton {
     position: absolute;
     top: 15px;
     right: 15px;
 }
 
-.detail .left, .detail .right {
+.detail .left,
+.detail .right {
     display: inline-block;
 }
-.detail .left{
+
+.detail .left {
     width: 300px;
     margin-right: 20px;
     float: left;
 }
 
-.detail .right{
+.detail .right {
     width: 630px;
 }
 
-.detail .stats{
+.detail .stats {
     border: 2px solid black;
 }
 
-.detail .stats .gear{
+.detail .stats .gear {
     list-style: none;
     padding: 0;
     padding-left: 20px;
@@ -105,4 +111,32 @@ header .backbutton {
 footer {
     margin-top: 10px;
     text-align: center;
+}
+
+#container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.rotated {
+    transform: rotate(-54deg);
+    /* Set initial rotation */
+    animation: rotation 6s infinite linear;
+    animation-play-state: paused;
+}
+
+.rotated:hover {
+    animation-play-state: running;
+}
+
+@keyframes rotation {
+    from {
+        transform: rotate(-45deg);
+        /* Start from 40 degrees */
+    }
+
+    to {
+        transform: rotate(315deg);
+        /* Complete a full circle (360 + 40 degrees) */
+    }
 }

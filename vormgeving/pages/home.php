@@ -58,7 +58,7 @@ $mysqli->close();
     ?>
     <a class="item" href="?page=character&id=<?php echo $allCharacters[$i]['id'] ?>">
         <div class="left">
-            <img class="avatar" src="resources/images/<?php echo $allCharacters[$i]['avatar'] ?>">
+            <img class="avatar <?php if ($allCharacters[$i]['name'] == "Captain America") { echo 'rotated'; } ?>" src="resources/images/<?php echo $allCharacters[$i]['avatar'] ?>">
         </div>
         <div class="right">
             <h2><?php echo $allCharacters[$i]['name'] ?></h2>
