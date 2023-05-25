@@ -12,7 +12,7 @@
 <div id="container">
     <div class="detail">
         <div class="left">
-            <img class="avatar" src="resources/images/deadLink.jpg">
+            <img class="avatar" src="resources/images/deadLink.jpg" alt="deadLink.jpg image should be here">
             <div class="stats" style="background-color: yellowgreen">
                 <ul class="fa-ul">
                     <li><span class="fa-li"><i class="fas fa-heart"></i></span> 404</li>
